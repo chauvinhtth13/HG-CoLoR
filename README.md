@@ -29,9 +29,14 @@ Clone the HG-CoLoR repository with:
   ```bash
   git clone https://github.com/morispi/HG-CoLoR
   ```
-
+Then run the install_env.sh script for setup enviroment:
+ 
+ ```bash
+  ./install_env.sh
+  ```
+  
 Then run the install.sh script:
-
+  
   ```bash
   ./install.sh
   ```
