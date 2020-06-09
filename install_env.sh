@@ -15,21 +15,19 @@ sudo apt-get install yaggo emboss
 sudo apt-get update
 sudo apt-get upgrade
 
-wget https://github.com/gmarcais/Jellyfish/archive/v2.3.0.tar.gz
-tar -zxvf v2.3.0.tar.gz 
-rm v2.3.0.tar.gz 
-cd Jellyfish-2.3.0/
+git clone https://github.com/gmarcais/Jellyfish.git
+cd Jellyfish
+autoreconf -i
 ./configure
 make -j 4
 sudo make install
+
 pkg-config --exists jellyfish-2.0 && echo OK
 
 cd ..
 
-wget https://github.com/gmarcais/Quorum/releases/download/v1.1.1/quorum-1.1.1.tar.gz
-tar -zxvf quorum-1.1.1.tar.gz 
-rm quorum-1.1.1.tar.gz
-cd quorum-1.1.1/
+git clone https://github.com/gmarcais/Quorum.git
+cd Quorum
 autoreconf -fi
 ./configure
 make
