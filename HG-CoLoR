@@ -204,7 +204,7 @@ quorum --prefix $tmpdir/corrected_SR -q 33 -t "$nproc" "$shortreads" >> HG-CoLoR
 echo  "------ Done Correcting the short reads ----------"
 
 echo "["$(date)"] Removing short reads containing weak K-mers"
-python HGCfilterShortReads.py $tmpdir/corrected_SR.fa "$K" > $tmpdir/long_corrected_SR.fa
+python ./bin/HGCfilterShortReads.py $tmpdir/corrected_SR.fa "$K" > $tmpdir/long_corrected_SR.fa
 echo  "------ Done HGCfilterShortReads----------"
 
 echo "----- revseq -----" >> HG-CoLoR.stdout
@@ -237,7 +237,7 @@ echo "----- PgSAgen -----" >> HG-CoLoR.stderr
 PgSAgen $tmpdir/"$K-mers.fa" $tmpdir/"$K-mers.fa" >> HG-CoLoR.stdout 2>> HG-CoLoR.stderr
 echo  "------ Done PgSAgen----------"
 
-python HGCformatLongReads.py "$longreads" > $tmpdir/"$formatLR"
+python ./bin/HGCformatLongReads.py "$longreads" > $tmpdir/"$formatLR"
 echo  "------ Done HGCformatLongReads----------"
 
 echo "["$(date)"] Aligning the short reads on the long reads"
@@ -250,10 +250,10 @@ ulimit -s 65536
 HG-CoLoR-correct -t "$tmpdir" -K "$K" -d "$seedsdistance" -o "$seedsoverlap" -k "$k" -b "$branches" -s "$seedskips" -m "$mismatches" -j "$nproc" -r $tmpdir/"$formatLR" -a $tmpdir/"$aln" $tmpdir/"$K-mers.fa.pgsa" > "$out.fasta"
 echo  "------ Done HG-CoLoR-correct----------"
 
-python HGCtrim.py "$out.fasta" > "$out.trim.fasta"
+python ./bin/HGCtrim.py "$out.fasta" > "$out.trim.fasta"
 echo  "------ Done HGCtrim---------"
 
-python HGCsplit.py "$out.trim.fasta" > "$out.split.fasta"
+python ./bin/HGCsplit.py "$out.trim.fasta" > "$out.split.fasta"
 echo  "------ Done HGCsplit---------"
 
 
