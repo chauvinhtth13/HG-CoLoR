@@ -34,6 +34,23 @@ Then run the install_env.sh script for setup enviroment:
  ```bash
   ./install_env.sh
   ```
+Install Jellyfish
+```bash
+autoreconf -i
+./configure
+make -j 4
+sudo make install
+```
+Install Quorum 
+Quorum requires Jellyfish to be installed. For Quorum to compile pkg-config must find Jellyfish. The following command must pring "OK":
+
+```bash
+pkg-config --exists jellyfish-2.0 && echo OK
+autoreconf -fi
+./configure
+make
+make install
+```
   
 Then run the install.sh script:
   
