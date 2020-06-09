@@ -15,19 +15,5 @@ sudo apt-get install yaggo emboss
 sudo apt-get update
 
 git clone https://github.com/gmarcais/Jellyfish.git
-cd Jellyfish
-autoreconf -i
-./configure
-make -j 4
-sudo make install
-
-pkg-config --exists jellyfish-2.0 && echo OK
-
-cd ..
-
 git clone https://github.com/gmarcais/Quorum.git
-cd Quorum
-autoreconf -fi
-./configure
-make
-sudo make install
+
