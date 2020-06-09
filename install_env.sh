@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install gcc g++ build-essential autoconf automake yaggo pkg-config libtool gettext blasr emboss
+sudo apt-get install gcc g++ build-essential autoconf automake yaggo pkg-config libtool gettext emboss
 
 wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
 bash Anaconda3-2020.02-Linux-x86_64.sh 
