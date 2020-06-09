@@ -201,42 +201,52 @@ echo "["$(date)"] Correcting the short reads"
 echo "----- QuorUM -----" >> HG-CoLoR.stdout
 echo "----- QuorUM -----" >> HG-CoLoR.stderr
 quorum --prefix $tmpdir/corrected_SR -q 33 -t "$nproc" "$shortreads" >> HG-CoLoR.stdout 2>> HG-CoLoR.stderr
+export "---------Done Quorum-----------"
 
 echo "["$(date)"] Removing short reads containing weak K-mers"
 python ./bin/HGCfilterShortReads.py $tmpdir/corrected_SR.fa "$K" > $tmpdir/long_corrected_SR.fa
+export "---------Done HGCfilterShortReads-----------"
 echo "----- revseq -----" >> HG-CoLoR.stdout
 echo "----- revseq -----" >> HG-CoLoR.stderr
 revseq $tmpdir/long_corrected_SR.fa -reverse -complement -outseq $tmpdir/RC_long_corrected_SR.fa >> HG-CoLoR.stdout 2>> HG-CoLoR.stderr
+export "---------Done revseq-----------"
 sed -i ':a; $!N; /^>/!s/\n\([^>]\)/\1/; ta; P; D' $tmpdir/RC_long_corrected_SR.fa
 cat $tmpdir/long_corrected_SR.fa $tmpdir/RC_long_corrected_SR.fa > $tmpdir/all_long_corrected_SR.fa
 echo "----- KMC -----" >> HG-CoLoR.stdout
 echo "----- KMC -----" >> HG-CoLoR.stderr
 kmc -m"$kmcmem" -k"$K" -ci"$solid" -b -fa $tmpdir/all_long_corrected_SR.fa $tmpdir/mers.db $tmpdir >> HG-CoLoR.stdout 2>> HG-CoLoR.stderr
+export "---------Done kmc----------"
 echo "----- KMC_tools -----" >> HG-CoLoR.stdout
 echo "----- KMC_tools -----" >> HG-CoLoR.stderr
 kmc_tools filter $tmpdir/mers.db -ci"$solid" $tmpdir/long_corrected_SR.fa -ci1.0 -fa $tmpdir/good_long_corrected_SR.fa -fa >> HG-CoLoR.stdout 2>> HG-CoLoR.stderr
+export "---------Done kmc_tools-----------"
 rm $tmpdir/long_corrected_SR.fa $tmpdir/RC_long_corrected_SR.fa $tmpdir/all_long_corrected_SR.fa $tmpdir/corrected_SR.fa
 
 echo "["$(date)"] Building the graph"
 echo "----- KMC_dump -----" >> HG-CoLoR.stdout
 echo "----- KMC_dump -----" >> HG-CoLoR.stderr
 kmc_dump -ci"$solid" $tmpdir/mers.db $tmpdir/"dumped_$K-mers" >> HG-CoLoR.stdout 2>> HG-CoLoR.stderr
+export "---------Done kmc_dump----------"
 cut -f 1 $tmpdir/"dumped_$K-mers" > $tmpdir/"$K-mers.fa"
 echo "----- PgSAgen -----" >> HG-CoLoR.stdout
 echo "----- PgSAgen -----" >> HG-CoLoR.stderr
 PgSAgen $tmpdir/"$K-mers.fa" $tmpdir/"$K-mers.fa" >> HG-CoLoR.stdout 2>> HG-CoLoR.stderr
+export "---------Done PgSAgen----------"
 
 python ./bin/HGCformatLongReads.py "$longreads" > $tmpdir/"$formatLR"
-
+export "---------Done HGCformatLongReads----------"
 echo "["$(date)"] Aligning the short reads on the long reads"
 echo "----- blasr -----" >> HG-CoLoR.stderr
 blasr $tmpdir/good_long_corrected_SR.fa $tmpdir/"$formatLR" --nproc "$nproc" -m 6 --minAlnLength "$K" --bestn "$bestn" | sort -T $tmpdir/ -k 3 --parallel="$nproc" > $tmpdir/"$aln" 2>> HG-CoLoR.stderr
-
+export "---------Done blasr----------"
 echo "["$(date)"] Generating the corrected long reads"
 ulimit -s 65536
 HG-CoLoR-correct -t "$tmpdir" -K "$K" -d "$seedsdistance" -o "$seedsoverlap" -k "$k" -b "$branches" -s "$seedskips" -m "$mismatches" -j "$nproc" -r $tmpdir/"$formatLR" -a $tmpdir/"$aln" $tmpdir/"$K-mers.fa.pgsa" > "$out.fasta"
+export "---------Done HG-CoLoR-correct----------"
 python ./bin/HGCtrim.py "$out.fasta" > "$out.trim.fasta"
+export "---------Done HGCtrim----------"
 python ./bin/HGCsplit.py "$out.trim.fasta" > "$out.split.fasta"
+export "---------Done HGCsplit----------"
 
 echo "["$(date)"] Removing the temporary files"
 rm -Rf $tmpdir
