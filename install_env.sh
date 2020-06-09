@@ -1,12 +1,15 @@
 #!/bin/bash
 
-sudo apt-get install gcc g++ build-essential autoconf automake yaggo pkg-config libtool gettext emboss
+sudo apt-get install gcc g++ build-essential autoconf automake pkg-config libtool
 
 wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
 bash Anaconda3-2020.02-Linux-x86_64.sh 
 rm Anaconda3-2020.02-Linux-x86_64.sh 
 
+sudo apt-get install yaggo emboss
+
 sudo apt-get update
+sudo apt-get upgrade
 
 wget https://github.com/gmarcais/Jellyfish/archive/v2.3.0.tar.gz
 tar -zxvf v2.3.0.tar.gz 
