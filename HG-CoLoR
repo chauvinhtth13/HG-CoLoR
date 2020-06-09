@@ -230,7 +230,7 @@ python ./bin/HGCformatLongReads.py "$longreads" > $tmpdir/"$formatLR"
 
 echo "["$(date)"] Aligning the short reads on the long reads"
 echo "----- blasr -----" >> HG-CoLoR.stderr
-blasr $tmpdir/good_long_corrected_SR.fa $tmpdir/"$formatLR" --nproc "$nproc" -m 6 --minAlnLength "$K" --bestn "$bestn" | sort -T $tmpdir/ -k 3 --parallel="$nproc" > $tmpdir/"$aln" 2>> HG-CoLoR.stderr
+.bin/blasr $tmpdir/good_long_corrected_SR.fa $tmpdir/"$formatLR" --nproc "$nproc" -m 6 --minAlnLength "$K" --bestn "$bestn" | sort -T $tmpdir/ -k 3 --parallel="$nproc" > $tmpdir/"$aln" 2>> HG-CoLoR.stderr
 
 echo "["$(date)"] Generating the corrected long reads"
 ulimit -s 65536
