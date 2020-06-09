@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install gcc g++ build-essential autoconf automake pkg-config libtool
+sudo apt-get install gcc g++ build-essential autoconf automake pkg-config libtool gettext
 cd ..
 if which python3 >/dev/null; then
     echo exists
