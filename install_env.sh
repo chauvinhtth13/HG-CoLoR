@@ -2,7 +2,7 @@
 
 sudo apt-get install gcc g++ build-essential autoconf automake pkg-config libtool
 
-export "---------Done Step 1-----------"
+Echo "---------Done Step 1-----------"
 
 if which conda >/dev/null; then
     echo exists
