@@ -42,6 +42,7 @@ make -j 4
 sudo make install
 ```
 Install Quorum 
+
 Quorum requires Jellyfish to be installed. For Quorum to compile pkg-config must find Jellyfish. The following command must pring "OK":
 
 ```bash
