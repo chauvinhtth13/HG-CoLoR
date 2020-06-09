@@ -15,7 +15,6 @@ wget https://github.com/gmarcais/Jellyfish/archive/v2.3.0.tar.gz
 tar -zxvf v2.3.0.tar.gz 
 rm v2.3.0.tar.gz 
 cd Jellyfish-2.3.0/
-autoreconf -i
 ./configure
 make -j 4
 sudo make install
