@@ -10,4 +10,6 @@ make build CONF=pgsagen
 cd ..
 make
 
-export PATH=$PATH:$PWD/KMC/bin:$PWD/PgSA/dist/pgsagen/GNU-Linux-x86/
+export PATH=$PWD/KMC/bin:$PATH
+export PATH=$PWD/bin/:$PATH
+export PATH=$PWD/PgSA/dist/pgsagen/GNU-Linux-x86/:$PATH
