@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install gcc g++ build-essential autoconf automake autoreconf pkg-config libtool
+sudo apt-get install gcc g++ build-essential autoconf automake pkg-config libtool
 cd ..
 if which python3 >/dev/null; then
     echo exists
@@ -13,7 +13,4 @@ fi
 sudo apt-get install yaggo emboss
 
 sudo apt-get update
-
-git clone https://github.com/gmarcais/Jellyfish.git
-git clone https://github.com/gmarcais/Quorum.git
 
