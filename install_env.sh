@@ -13,7 +13,6 @@ fi
 sudo apt-get install yaggo emboss
 
 sudo apt-get update
-sudo apt-get upgrade
 
 git clone https://github.com/gmarcais/Jellyfish.git
 cd Jellyfish
