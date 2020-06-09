@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo apt-get install gcc g++ build-essential autoconf automake autoreconf pkg-config libtool
+cd ..
 if which python3 >/dev/null; then
     echo exists
 else
