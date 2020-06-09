@@ -2,12 +2,13 @@
 
 sudo apt-get install gcc g++ build-essential autoconf automake pkg-config libtool
 
-if which condo >/dev/null; then
+if which conda >/dev/null; then
     echo exists
 else
     wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
     bash Anaconda3-2020.02-Linux-x86_64.sh 
-    rm Anaconda3-2020.02-Linux-x86_64.sh 
+    rm Anaconda3-2020.02-Linux-x86_64.sh
+    cd .. 
     export PATH=~/anaconda3/bin:$PATH
 fi
 
