@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install gcc g++ build-essential autoconf automake pkg-config libtool gettext
+sudo apt-get install gcc g++ build-essential autoconf automake pkg-config libtool
 cd ..
 if which python3 >/dev/null; then
     echo exists
@@ -10,7 +10,7 @@ else
     rm Anaconda3-2020.02-Linux-x86_64.sh 
 fi
 
-sudo apt-get install yaggo emboss
+sudo apt-get install yaggo emboss gettext
 
 sudo apt-get update
 
