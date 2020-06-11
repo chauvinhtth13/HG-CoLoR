@@ -112,6 +112,7 @@ int getLongReadLength(string tpl) {
 		i--;
 	}
 	i++;
+	cout << tpl;
 	return stoi(tpl.substr(i), NULL);
 }
 

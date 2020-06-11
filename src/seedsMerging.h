@@ -65,6 +65,7 @@ struct seed_t {
 			tlen = getLongReadLength(token);
 		}
 		getline(iss, token, '\t');
+		cout << token;
 		pos = stoi(token, NULL);
 		getline(iss, token, '\t');
 		getline(iss, token, '\t');
