@@ -15,7 +15,7 @@ else
 fi
 echo "---------Done Step 2-----------"
 
-sudo apt-get install yaggo emboss gettext blasr
+sudo apt-get install yaggo emboss gettext
 
 echo "---------Done Step 3-----------"
 
